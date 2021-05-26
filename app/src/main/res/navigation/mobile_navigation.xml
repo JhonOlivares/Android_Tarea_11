@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/clienteFragment">
+
+    <fragment
+        android:id="@+id/clienteFragment"
+        android:name="com.example.olivarestolentino_tarea_11.ui.cliente.ClienteFragment"
+        android:label="Clientes"
+        tools:layout="@layout/cliente_fragment" />
+
+    <fragment
+        android:id="@+id/direccionFragment"
+        android:name="com.example.olivarestolentino_tarea_11.ui.direccion.DireccionFragment"
+        android:label="Dirección"
+        tools:layout="@layout/fragment_direccion" />
+</navigation>
