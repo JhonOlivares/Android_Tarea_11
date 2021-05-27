@@ -41,7 +41,7 @@ public class DireccionListAdapter extends ArrayAdapter<Direccion> {
         tvDireccion = convertView.findViewById(R.id.tv_direccion);
         tvNombre = convertView.findViewById(R.id.tv_clienteNombre2);
 
-        String text = getItem(position).getCalle() +" "+ getItem(position).getNumero() + " - "+ getItem(position).getComuna() + ", " + getItem(position).getCiudad() ;
+        String text = getItem(position).getCalle() +" "+ getItem(position).getNumero() + " " + getItem(position).getComuna() + " " + getItem(position).getCiudad() ;
         tvDireccion.setText(text);
 
 

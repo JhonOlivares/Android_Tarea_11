@@ -9,11 +9,11 @@
         android:id="@+id/btn_editarCliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Editar cliente"/>
+        android:text="Editar"/>
     <Button
         android:id="@+id/btn_eliminarCliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Eliminar cliente"/>
+        android:text="Eliminar"/>
 
 </LinearLayout>

@@ -6,16 +6,21 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.olivarestolentino_tarea_11.R;
 import com.example.olivarestolentino_tarea_11.db.DBHelper;
+import com.example.olivarestolentino_tarea_11.modelo.Cliente;
 import com.example.olivarestolentino_tarea_11.modelo.Direccion;
 
 public class DireccionFormActivity extends AppCompatActivity {
 
-    private EditText etNumero, etCalle, etComuna, etCiudad, etClienteID;
+    private EditText etNumero, etCalle, etComuna, etCiudad;
+    private Spinner spinnerClientes;
 
     private DBHelper dbHelper;
 
@@ -31,7 +36,7 @@ public class DireccionFormActivity extends AppCompatActivity {
         etCalle = findViewById(R.id.et_calleDireccion);
         etComuna = findViewById(R.id.et_comunaDireccion);
         etCiudad = findViewById(R.id.et_ciudadDireccion);
-        etClienteID = findViewById(R.id.et_clienteIDDireccion);
+        spinnerClientes = findViewById(R.id.spiner_clientes);
 
         Intent intent = getIntent();
         currentDireccion = (Direccion) intent.getSerializableExtra("obj");
@@ -59,19 +64,22 @@ public class DireccionFormActivity extends AppCompatActivity {
                 }
             }
         });
-        
+
+        LlenarSpiner();
+
+
         
     }
 
 
 
     private Boolean RegistrarDireccion(){
-        if (!etCalle.getText().toString().isEmpty() && !etClienteID.getText().toString().isEmpty()){
+        if (!etCalle.getText().toString().isEmpty() && (Cliente)spinnerClientes.getSelectedItem() != null){
             String numero = etNumero.getText().toString();
             String calle = etCalle.getText().toString();
             String comuna = etComuna.getText().toString();
             String ciudad = etCiudad.getText().toString();
-            Integer idCliente = Integer.parseInt(etClienteID.getText().toString());
+            Integer idCliente = ((Cliente)spinnerClientes.getSelectedItem()).getIdCliente();
 
 
 
@@ -86,7 +94,6 @@ public class DireccionFormActivity extends AppCompatActivity {
             etCalle.setText("");
             etComuna.setText("");
             etCiudad.setText("");
-            etClienteID.setText("");
             currentDireccion = null;
             Toast.makeText(this, "Direccion registrado con éxito", Toast.LENGTH_SHORT).show();
             return true;
@@ -102,16 +109,20 @@ public class DireccionFormActivity extends AppCompatActivity {
         etCalle.setText(currentDireccion.getCalle() + "");
         etComuna.setText(currentDireccion.getComuna() + "");
         etCiudad.setText(currentDireccion.getCiudad() + "");
-        etClienteID.setText(currentDireccion.getIdCliente() + "");
+    }
+
+    void LlenarSpiner(){
+        ArrayAdapter spinerArray = new ArrayAdapter(this, R.layout.clientes_spinner, dbHelper.GetClienteArrayList());
+        spinnerClientes.setAdapter(spinerArray);
     }
 
     private Boolean ActualizarDireccion(){
-        if (!etCalle.getText().toString().isEmpty() && !etClienteID.getText().toString().isEmpty()){
+        if (!etCalle.getText().toString().isEmpty() && (Cliente)spinnerClientes.getSelectedItem() != null){
             String numero = etNumero.getText().toString();
             String calle = etCalle.getText().toString();
             String comuna = etComuna.getText().toString();
             String ciudad = etCiudad.getText().toString();
-            Integer idCliente = Integer.parseInt(etClienteID.getText().toString());
+            Integer idCliente = ((Cliente)spinnerClientes.getSelectedItem()).getIdCliente();
 
 
             currentDireccion.setNumero(numero);
@@ -129,7 +140,6 @@ public class DireccionFormActivity extends AppCompatActivity {
             etCalle.setText("");
             etComuna.setText("");
             etCiudad.setText("");
-            etClienteID.setText("");
             currentDireccion = null;
             Toast.makeText(this, "Direccion actualizado con éxito", Toast.LENGTH_SHORT).show();
             return true;

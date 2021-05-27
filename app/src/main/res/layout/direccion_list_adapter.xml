@@ -8,13 +8,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_customer_24"
-            app:tint="@color/design_default_color_primary" />
+            android:tint="@color/blue900"
+            />
         <TextView
             android:id="@+id/tv_clienteNombre2"
             android:layout_width="match_parent"
@@ -22,7 +24,8 @@
             android:layout_weight="1"
             android:text="Nombre Cliente"
             android:textSize="18sp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="2dp"/>
 
     </LinearLayout>
 
@@ -32,8 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="numero calle comuna "
-        android:textSize="20sp"
-        android:layout_marginRight="15dp"/>
+        android:textSize="20sp"/>
 
 
 

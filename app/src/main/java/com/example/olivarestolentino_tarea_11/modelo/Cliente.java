@@ -1,5 +1,6 @@
 package com.example.olivarestolentino_tarea_11.modelo;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.io.Serializable;
@@ -58,5 +59,11 @@ public class Cliente implements Serializable {
 
     public void setDescuento(Double descuento) {
         this.descuento = descuento;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return getNombre();
     }
 }
